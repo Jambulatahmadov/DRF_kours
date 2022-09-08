@@ -9,7 +9,8 @@ from .serializers import WomenSerializer
 
 class WomenAPIView(APIView):
     def get(self, request):
-        return Response({'title': 'Angelina Jolie'})
+        lst = Women.objects.all().values()
+        return Response({'posts': list(lst)})
 
     def post(self, request):
         return Response({'title': 'Jennifer Lawrence'})
