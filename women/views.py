@@ -1,3 +1,4 @@
+from django.forms import model_to_dict
 from rest_framework import generics
 from django.shortcuts import render
 from rest_framework.response import Response
@@ -13,7 +14,13 @@ class WomenAPIView(APIView):
         return Response({'posts': list(lst)})
 
     def post(self, request):
-        return Response({'title': 'Jennifer Lawrence'})
+        post_new = Women.objects.create(
+            title=request.data['title'],
+            content=request.data['content'],
+            cat_id=request.data['cat_id']
+        )
+
+        return Response({'post': model_to_dict(post_new)})
 
 # class WomenAPIView(generics.ListAPIView):
 #     queryset = Women.objects.all()
