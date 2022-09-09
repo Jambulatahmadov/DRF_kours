@@ -35,6 +35,13 @@ class WomenAPIView(APIView):
         serializer.save()
         return Response({"post": serializer.data})
 
+    def delete(self, request, *args, **kwargs):
+        pk = kwargs.get("pk", None)
+        if not pk:
+            return Response({"error": "Method PUT not allowed"})
+
+        return Response({"post": "delete post " + str(pk)})
+
 # class WomenAPIView(generics.ListAPIView):
 #     queryset = Women.objects.all()
 #     serializer_class = WomenSerializer
