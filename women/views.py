@@ -25,6 +25,11 @@ class WomenAPIView(APIView):
         if not pk:
             return Response({"error": "Method PUT not allowed"})
 
+        try:
+            instance = Women.objects.get(pk=pk)
+        except:
+            return Response({"error": "Method PUT not allowed"})
+
 # class WomenAPIView(generics.ListAPIView):
 #     queryset = Women.objects.all()
 #     serializer_class = WomenSerializer
