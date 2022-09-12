@@ -13,7 +13,7 @@ class WomenViewSet(viewsets.ModelViewSet):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
 
-    @action(methods=['get'], detail=False)
+    @action(methods=['get'], detail=True)
     def category(self, request, pk=None):
         cats = Category.objects.get(pk=pk)
         return Response({'cats': cats.name})
